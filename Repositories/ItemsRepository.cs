@@ -6,10 +6,10 @@ using Dapper;
 
 namespace BurgerShack.Repositories
 {
-  public class ItemRepository
+  public class ItemsRepository
   {
     private readonly IDbConnection _db;
-    public ItemRepository(IDbConnection db)
+    public ItemsRepository(IDbConnection db)
     {
       _db = db;
     }

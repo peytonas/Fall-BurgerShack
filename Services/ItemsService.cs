@@ -9,8 +9,8 @@ namespace BurgerShack.Services
 {
   public class ItemsService
   {
-    private readonly ItemRepository _repo;
-    public ItemsService(ItemRepository repo)
+    private readonly ItemsRepository _repo;
+    public ItemsService(ItemsRepository repo) //REVIEW Dependency Injection
     {
       _repo = repo;
     }
