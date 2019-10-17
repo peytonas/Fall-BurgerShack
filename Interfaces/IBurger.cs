@@ -1,4 +1,4 @@
-namespace Fall_BurgerShack.Interfaces
+namespace BurgerShack.Interfaces
 {
   public interface IBurger
   {

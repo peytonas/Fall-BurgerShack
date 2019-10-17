@@ -8,72 +8,68 @@ namespace BurgerShack.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class ItemsController : ControllerBase
+  public class OrdersController : ControllerBase
   {
-    private readonly ItemsService _iss;
-    public ItemsController(ItemsService iss)
+    private readonly OrdersService _os;
+    public OrdersController(OrdersService os)
     {
-      _iss = iss;
+      _os = os;
     }
     [HttpGet]
-    public ActionResult<IEnumerable<Item>> Get()
+    public ActionResult<IEnumerable<Order>> Get()
     {
       try
       {
-        return Ok(_iss.Get());
+        return Ok(_os.Get());
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       };
     }
-
     [HttpGet("{id}")]
-    public ActionResult<Item> Get(string id)
+    public ActionResult<Order> GetAction(string id)
     {
       try
       {
-        return Ok(_iss.Get(id));
+        return Ok(_os.Get(id));
       }
       catch (System.Exception e)
       {
         return BadRequest(e.Message);
       }
     }
-
     [HttpPost]
-    public ActionResult<Item> Post([FromBody] Item newItem)
+    public ActionResult<Item> Post([FromBody] Order newOrder)
     {
       try
       {
-        return Ok(_iss.Create(newItem));
+        return Ok(_os.Create(newOrder));
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
-
     [HttpPut("{id}")]
-    public ActionResult<Item> Edit(string id, [FromBody] Item editItemData)
+    public ActionResult<Order> Edit(int id, [FromBody] Order editOrderData)
     {
       try
       {
-        editItemData.Id = id;
-        return Ok(_iss.Edit(editItemData));
+        editOrderData.Id = id;
+        return Ok(_os.Edit(editOrderData));
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
-
     [HttpDelete("{id}")]
     public ActionResult<string> Delete(string id)
     {
       try
       {
-        return Ok(_iss.Delete(id));
+        return Ok(_os.Delete(id));
       }
       catch (Exception e)
       {

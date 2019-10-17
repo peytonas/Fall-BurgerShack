@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using BurgerShack.Db;
 using BurgerShack.Models;
 using BurgerShack.Repositories;
 
@@ -22,16 +20,14 @@ namespace BurgerShack.Services
     public Item Get(string id)
     {
       Item exists = _repo.Get(id);
-      if (exists == null) { throw new Exception("Bad ID"); }
+      if (exists == null) { throw new Exception("bad ID bruh"); }
       return exists;
     }
 
     public Item Create(Item newItem)
     {
-      Item exists = _repo.Exists("name", newItem.Name);
-      if (exists != null) { throw new Exception("We already have that on the menu!"); }
-      newItem.Id = Guid.NewGuid().ToString();
-      _repo.Create(newItem);
+      string id = _repo.Create(newItem);
+      newItem.Id = id;
       return newItem;
     }
 
@@ -40,9 +36,8 @@ namespace BurgerShack.Services
       Item item = _repo.Get(editItemData.Id);
       if (item == null) { throw new Exception("Invalid Id"); }
       item.Name = editItemData.Name;
-      item.Description = editItemData.Description;
       item.Price = editItemData.Price;
-      _repo.Edit(editItemData);
+      _repo.Edit(item);
       return editItemData;
     }
 
